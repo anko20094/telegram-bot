@@ -15,7 +15,12 @@ ENV['RAILS_ENV'] = 'test'
 class TestApplication < Rails::Application
   config.eager_load = false
   config.log_level = :debug
-  config.action_dispatch.show_exceptions = false
+  if (ActionPack::VERSION::MAJOR >= 8) ||
+      (ActionPack::VERSION::MAJOR == 7 && ActionPack::VERSION::MINOR >= 2)
+    config.action_dispatch.show_exceptions = :none
+  else
+    config.action_dispatch.show_exceptions = false
+  end
   routes.default_url_options = {host: 'test.rpsec'}
 
   telegram_config = {
@@ -61,14 +66,12 @@ RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :request
 
   config.around type: :request do |ex|
-    begin
-      Telegram.reset_bots
-      Telegram::Bot::ClientStub.stub_all!
-      ex.run
-    ensure
-      Telegram.reset_bots
-      Telegram::Bot::ClientStub.stub_all!(false)
-    end
+    Telegram.reset_bots
+    Telegram::Bot::ClientStub.stub_all!
+    ex.run
+  ensure
+    Telegram.reset_bots
+    Telegram::Bot::ClientStub.stub_all!(false)
   end
 
   config.before type: :request do

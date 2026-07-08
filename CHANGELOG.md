@@ -1,5 +1,31 @@
 # Unreleased
 
+# 0.17.0
+
+- Rails 8.1 support
+- Drop support for rails < 7.0 and ruby < 2.7
+- Update to Bot API 9.6
+
+# 0.16.7
+
+- Update to Bot API 8.2
+
+# 0.16.6
+
+- Fix poller rake task for Rails 8.0
+
+# 0.16.5
+
+- Rails 8.0 support
+- Update to Bot API 8.0
+
+# 0.16.4
+
+- Rails 7.2 support
+- Update to Bot API 7.9
+
+# 0.16.3
+
 - Update to Bot API 7.7
 - Added `pre_checkout_query` to PAYLOAD_TYPES
 

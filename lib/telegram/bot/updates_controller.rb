@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'logger'
 require 'abstract_controller'
 require 'active_support/core_ext/string/inflections'
 require 'active_support/callbacks'
@@ -89,31 +90,13 @@ module Telegram
 
       extend Session::ConfigMethods
 
-      PAYLOAD_TYPES = Set.new(%w[
-        message
-        edited_message
-        channel_post
-        edited_channel_post
-        business_connection
-        business_message
-        edited_business_message
-        deleted_business_messages
-        message_reaction
-        message_reaction_count
-        inline_query
-        chosen_inline_result
-        callback_query
-        shipping_query
-        pre_checkout_query
-        poll
-        poll_answer
-        my_chat_member
-        chat_member
-        chat_join_request
-        chat_boost
-        removed_chat_boost
-        pre_checkout_query
-      ].freeze)
+      PAYLOAD_TYPES_FILE = File.expand_path('updates_controller/payload_types.txt', __dir__)
+      PAYLOAD_TYPES = File.read(PAYLOAD_TYPES_FILE).
+        lines.
+        map(&:strip).
+        reject { |x| x.empty? || x.start_with?('#') }.
+        to_set.
+        freeze
 
       class << self
         # Initialize controller and process update.
@@ -138,12 +121,10 @@ module Telegram
 
         def payload_from_typed_update(update)
           PAYLOAD_TYPES.find do |type|
-            begin
-              item = update[type]
-              return [item, type] if item
-            rescue Exception # rubocop:disable Lint/RescueException
-              # dry-rb raises exception if field is not defined in schema
-            end
+            item = update[type]
+            return [item, type] if item
+          rescue Exception # rubocop:disable Lint/RescueException
+            # dry-rb raises exception if field is not defined in schema
           end
         end
       end

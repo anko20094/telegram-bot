@@ -1,5 +1,5 @@
 # Generated with bin/fetch-telegram-methods
-# Bot API 7.7
+# Bot API 9.6
 
 getUpdates
 setWebhook
@@ -27,22 +27,29 @@ sendLocation
 sendVenue
 sendContact
 sendPoll
+sendChecklist
 sendDice
+sendMessageDraft
 sendChatAction
 setMessageReaction
 getUserProfilePhotos
+getUserProfileAudios
+setUserEmojiStatus
 getFile
 banChatMember
 unbanChatMember
 restrictChatMember
 promoteChatMember
 setChatAdministratorCustomTitle
+setChatMemberTag
 banChatSenderChat
 unbanChatSenderChat
 setChatPermissions
 exportChatInviteLink
 createChatInviteLink
 editChatInviteLink
+createChatSubscriptionInviteLink
+editChatSubscriptionInviteLink
 revokeChatInviteLink
 approveChatJoinRequest
 declineChatJoinRequest
@@ -76,6 +83,8 @@ unpinAllGeneralForumTopicMessages
 answerCallbackQuery
 getUserChatBoosts
 getBusinessConnection
+getManagedBotToken
+replaceManagedBotToken
 setMyCommands
 deleteMyCommands
 getMyCommands
@@ -85,18 +94,53 @@ setMyDescription
 getMyDescription
 setMyShortDescription
 getMyShortDescription
+setMyProfilePhoto
+removeMyProfilePhoto
 setChatMenuButton
 getChatMenuButton
 setMyDefaultAdministratorRights
 getMyDefaultAdministratorRights
+getAvailableGifts
+sendGift
+giftPremiumSubscription
+verifyUser
+verifyChat
+removeUserVerification
+removeChatVerification
+readBusinessMessage
+deleteBusinessMessages
+setBusinessAccountName
+setBusinessAccountUsername
+setBusinessAccountBio
+setBusinessAccountProfilePhoto
+removeBusinessAccountProfilePhoto
+setBusinessAccountGiftSettings
+getBusinessAccountStarBalance
+transferBusinessAccountStars
+getBusinessAccountGifts
+getUserGifts
+getChatGifts
+convertGiftToStars
+upgradeGift
+transferGift
+postStory
+repostStory
+editStory
+deleteStory
+answerWebAppQuery
+savePreparedInlineMessage
+savePreparedKeyboardButton
 
 editMessageText
 editMessageCaption
 editMessageMedia
 editMessageLiveLocation
 stopMessageLiveLocation
+editMessageChecklist
 editMessageReplyMarkup
 stopPoll
+approveSuggestedPost
+declineSuggestedPost
 deleteMessage
 deleteMessages
 
@@ -118,14 +162,15 @@ setCustomEmojiStickerSetThumbnail
 deleteStickerSet
 
 answerInlineQuery
-answerWebAppQuery
 
 sendInvoice
 createInvoiceLink
 answerShippingQuery
 answerPreCheckoutQuery
+getMyStarBalance
 getStarTransactions
 refundStarPayment
+editUserStarSubscription
 
 setPassportDataErrors
 
